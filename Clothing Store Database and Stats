@@ -1,0 +1,36 @@
+--Create a cothing store database 
+
+CREATE TABLE store ( id INTEGER PRIMARY KEY, name TEXT, color TEXT, quantity INTEGER, price INTEGER); 
+
+INSERT INTO store VALUES (1, "shorts", "blue", 5, 15.99); 
+INSERT INTO store VALUES (2, "dresses", "white", 5, 15.99);
+INSERT INTO store VALUES (3, "underwear", "black", 5, 15.99);
+INSERT INTO store VALUES (4, "skinnypants", "blue", 8, 20.99);
+INSERT INTO store VALUES (5, "rippedpants", "white", 5,22.99);
+INSERT INTO store VALUES (6, "croppedpants", "black", 10,18.00);
+INSERT INTO store VALUES (7, "tshirts", "white", 15,10.99);
+INSERT INTO store VALUES (8, "cropshirts", "pink", 20,8.99);
+INSERT INTO store VALUES (9,"shirts" , "black", 15,10.99);
+INSERT INTO store VALUES (10,"jackets", "grey", 25, 30.00);
+INSERT INTO store VALUES (11, "longsleeve", "black", 15, 28.99);
+INSERT INTO store VALUES (12,"shoes", "white", 20, 25.00);
+INSERT INTO store VALUES (13,"tanktop", "red", 24,8.99);
+INSERT INTO store VALUES (14, "swimsuit", "yellow",14,30.00);
+INSERT INTO store VALUES (15, "cardigan", "tan", 18,45.99);
+
+--display database ordered by price.
+SELECT * FROM store 
+ORDER BY price asc;
+
+--what are the 10 lowest quantity items?
+SELECT name,quantity
+FROM store 
+order by quantity 
+LIMIT 10;
+
+--what are the 5 highest quantity items?
+SELECT name,quantity 
+FROM store
+order by quantity desc 
+LIMIT 5;
+
