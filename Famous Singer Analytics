@@ -1,0 +1,79 @@
+ CREATE TABLE singers (id INTEGER PRIMARY KEY AUTOINCREMENT, 
+fullname TEXT,
+birthyear INTEGER,
+age INTEGER);  
+
+INSERT INTO singers (fullname,birthyear,age) VALUES ("SelenaGomez", "1992", "30");
+INSERT INTO singers (fullname,birthyear,age) VALUES ("JustinBieber", "1994", "29");
+INSERT INTO singers (fullname,birthyear,age) VALUES ("TaylorSwift", "1989", "33");
+INSERT INTO singers (fullname,birthyear,age) VALUES ("HarryStyles", "1994", "29");
+INSERT INTO singers (fullname,birthyear,age) VALUES ("LadyGaga","1986","37");
+
+CREATE TABLE songtitles (id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT,
+    title TEXT);
+
+INSERT INTO songtitles (name,title) VALUES ("SelenaGomez","Calm Down");
+INSERT INTO songtitles (name,title) VALUES ("SelenaGomez","Ice Cream");
+INSERT INTO songtitles (name,title) VALUES ("JustinBieber","Baby");
+INSERT INTO songtitles (name,title) VALUES ("JustinBieber",
+"Ghost");
+INSERT INTO songtitles (name,title) VALUES ("TaylorSwift","Enchanted");
+INSERT INTO songtitles (name,title) VALUES ("TaylorSwift","Bad Blood");
+INSERT INTO songtitles (name,title) VALUES ("HarryStyles","As it Was");
+INSERT INTO songtitles (name,title) VALUES ("HarryStyles","Night Changes");
+INSERT INTO songtitles (name,title) VALUES ("LadyGaga","Poker Face");
+INSERT INTO songtitles (name,title) VALUES ("LadyGaga", "Bad Romance");
+
+CREATE TABLE birthplace (id INTEGER PRIMARY KEY AUTOINCREMENT,
+name TEXT,
+country TEXT,
+state TEXT,
+person_id INTEGER);
+
+INSERT INTO birthplace (name,country,state,person_id) VALUES ("SelenaGomez","USA","Texas","1");
+INSERT INTO birthplace (name,country,state,person_id) VALUES ("JustinBieber","Canada","London","2");
+INSERT INTO birthplace (name,country,state,person_id) VALUES ("TaylorSwift","USA","Pennsylvania","3");
+INSERT INTO birthplace (name,country,state,person_id) VALUES ("HarryStyles","United Kingdom","Redditch","4");
+INSERT INTO birthplace (name,country,state,person_id) VALUES ("LadyGaga","USA","NewYork","5");
+
+CREATE TABLE exes (id INTEGER PRIMARY KEY AUTOINCREMENT,
+person1_id INTEGER, 
+person2_id INTEGER);
+
+INSERT INTO exes(person1_id,person2_id) VALUES ("1","2");
+INSERT INTO exes(person1_id,person2_id) VALUES ("3","4");
+
+
+
+--LEFT OUTER JOIN--
+
+SELECT singers.fullname,birthplace.country,
+COUNT(birthplace.country) as Birthplace_count
+FROM singers
+LEFT OUTER JOIN birthplace
+ON singers.fullname = birthplace.name
+GROUP BY singers.fullname;
+
+--SELF-JOIN--
+
+SELECT fullname,person_id FROM singers
+JOIN birthplace 
+ON singers.id = birthplace.person_id;
+
+SELECT a.fullname,b.fullname FROM exes
+JOIN singers a
+ON exes.person1_id = a.id
+JOIN singers b
+ON exes.person2_id = b.id;
+
+--Implicit INNER JOIN--
+
+SELECT singers.fullname, songtitles.title from singers,songtitles
+WHERE singers.id = songtitles.id;
+
+--Explicit INNER JOIN--
+
+SELECT singers.fullname,songtitles.title FROM singers
+JOIN songtitles
+ON singers.fullname = songtitles.name;
