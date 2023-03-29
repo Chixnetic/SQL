@@ -1,13 +1,4 @@
-SELECT 
-people.show_id,
-people.director,
-titles.title,
-titles.type
-
-FROM "CharlotteChaze/BreakIntoTech"."netflix_people" people
-
-LEFT JOIN "CharlotteChaze/BreakIntoTech"."netflix_titles_info" titles
-ON people.show_id = titles.show_id;
+#In this SQL code, I'm querying a database that's holding Nexflix data to answer questions about the data. 
 
 --How many movie titles are there in the database? (movies only, not tv shows)
 
